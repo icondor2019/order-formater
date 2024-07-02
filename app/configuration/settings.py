@@ -23,6 +23,7 @@ class Settings(BaseSettings):
     SINGLE_STORE_HOST: str = os.getenv("SINGLE_STORE_HOST")
     SINGLE_STORE_PORT: str = os.getenv("SINGLE_STORE_PORT")
     SINGLE_STORE_DB: str = os.getenv("SINGLE_STORE_DB")
+    SINGLE_STORE_CA: str = os.getenv("SINGLE_STORE_CA")
 
     # Telegram bot
     TELEGRAM_BOT_TOKEN: str = os.getenv("TELEGRAM_BOT_TOKEN")
