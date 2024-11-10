@@ -34,15 +34,9 @@ def upgrade() -> None:
         sa.Column('version', sa.INTEGER(), nullable=True),
         sa.Column('status', sa.VARCHAR(length=10), nullable=False),
         sa.Column('raw_record', sa.TEXT(), nullable=True),
-        
-        # Llave primaria
         sa.PrimaryKeyConstraint('uuid'),
-        
-        # Llaves foráneas (si aplican)
         sa.ForeignKeyConstraint(['seller_uuid'], ['sellers.uuid']),
         sa.ForeignKeyConstraint(['product_uuid'], ['catalogue.uuid']),
-
-        # Motor específico de MySQL
         mysql_engine='InnoDB'
     )
 
