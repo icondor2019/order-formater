@@ -1,16 +1,16 @@
 from loguru import logger
 from sqlalchemy import text
-import json
-from typing import Optional
+# import json
+# from typing import Optional
 from configuration.database import db
 from sqlalchemy.exc import SQLAlchemyError
 from responses.seller_response import SellerResponse
 from repositories.queries.seller_query import (
     CREATE_SELLER_QUERY,
     UPDATE_SELLER_DATA_QUERY,
-    UPDATE_SELLER_OFFER_QUERY,
+    # UPDATE_SELLER_OFFER_QUERY,
     GET_SELLER_QUERY
-    )
+)
 
 
 class SellerRepository:
@@ -42,7 +42,6 @@ class SellerRepository:
         params = {'user_id': user_id}
         try:
             result = db.execute(text(GET_SELLER_QUERY), params).fetchone()
-            
             if result:
                 logger.debug(result[0])
                 logger.debug(result.user_id)
@@ -51,8 +50,8 @@ class SellerRepository:
                     uuid=result.uuid,
                     user_id=result.user_id,
                     name=result.name,
-                    status=result.status,
-                    )
+                    status=result.status
+                )
         except SQLAlchemyError as ex:
             logger.error(f"Error getting seller record. user_id: {user_id}. Error: {ex}")
         return seller_record

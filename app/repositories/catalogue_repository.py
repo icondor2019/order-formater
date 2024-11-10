@@ -5,7 +5,8 @@ from sqlalchemy.exc import SQLAlchemyError
 from responses.catalogue_response import CatalogueResponse
 from repositories.queries.catalogue_query import (
     CREATE_PRODUCT_QUERY,
-    VECTOR_SEARCH_QUERY
+    VECTOR_SEARCH_QUERY,
+    GET_PRODUCT_QUERY
 )
 
 
@@ -28,6 +29,18 @@ class CatalogueRepository:
         try:
             params = {'embedding': vector}
             result = db.execute(text(VECTOR_SEARCH_QUERY), params).fetchone()
+            logger.debug(result)
+            db.commit()
+        except SQLAlchemyError as ex:
+            db.rollback()
+            logger.error(f"Error consulting vecto. Error: {ex}")
+        return result
+
+    def get_product(self, product_uuid: str):
+        result = None
+        try:
+            params = {'product_uuid': product_uuid}
+            result = db.execute(text(GET_PRODUCT_QUERY), params).fetchone()
             logger.debug(result)
             db.commit()
         except SQLAlchemyError as ex:

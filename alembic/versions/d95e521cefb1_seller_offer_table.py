@@ -34,5 +34,6 @@ def upgrade() -> None:
         mysql_engine='InnoDB'
     )
 
+
 def downgrade() -> None:
     op.drop_table('products')
