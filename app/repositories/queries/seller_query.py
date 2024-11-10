@@ -4,13 +4,13 @@ CREATE_SELLER_QUERY = """
 """
 UPDATE_SELLER_DATA_QUERY = """
     UPDATE `sellers`
-    SET 
+    SET
         status = :status,
         name = :name
     WHERE user_id = :user_id;
 """
 GET_SELLER_QUERY = """
-    SELECT * 
+    SELECT *
     FROM sellers
     WHERE user_id = :user_id
 """

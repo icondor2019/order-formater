@@ -8,3 +8,10 @@ from catalogue
 order by score desc
 limit 1
 """
+
+GET_PRODUCT_QUERY = """
+select uuid, description
+from catalogue
+where uuid := uuid
+order by score desc
+"""
